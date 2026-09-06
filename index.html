@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="Premium ICT-TDA student portfolio — Technical Drafting, Animation and ICT.">
+<link
+  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+><title>TDA Portfolio | ICT • Technical Drafting & Animation</title>
+
+<style>
+
+:root{
+  --bg:#050914; --bg2:#081426; --panel:rgba(10,23,42,.68);
+  --panel2:rgba(14,31,55,.82); --text:#edf7ff; --muted:#91a8bc;
+  --line:rgba(105,204,255,.20); --line2:rgba(105,204,255,.42);
+  --accent:#55d9ff; --accent2:#7c8cff; --good:#65f5bf;
+  --shadow:0 24px 80px rgba(0,0,0,.42); --radius:24px;
+  --navH:74px;
+}
+[data-theme="light"]{
+  --bg:#e9f4fb; --bg2:#d8eaf4; --panel:rgba(255,255,255,.72);
+  --panel2:rgba(247,252,255,.9); --text:#102133; --muted:#587084;
+  --line:rgba(18,112,155,.20); --line2:rgba(18,112,155,.42);
+  --accent:#087da9; --accent2:#5869d8; --good:#118b68;
+  --shadow:0 24px 70px rgba(30,70,90,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--text); background:
+  radial-gradient(circle at 75% 5%,rgba(85,217,255,.10),transparent 28%),
+  radial-gradient(circle at 15% 35%,rgba(124,140,255,.08),transparent 28%),
+  var(--bg);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden; line-height:1.65;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-3;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px; opacity:.26;
+  mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background:
+    linear-gradient(transparent 0 48%,rgba(85,217,255,.035) 50%,transparent 52%);
+  background-size:100% 180px; animation:scan 12s linear infinite;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--accent);color:#00131c}
+
+
+.container{
+  width:min(1180px,92%);
+  margin:0 auto;
+}
+
+/* FULL-BLEED DESKTOP LAYOUT
+   Removes the left/right outer margins on PC while keeping
+   comfortable internal spacing for the content. */
+@media(min-width:1001px){
+  html,body{
+    width:100%;
+    min-width:100%;
+    margin:0;
+    padding:0;
+  }
+  .container{
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding-left:clamp(28px,4vw,72px);
+    padding-right:clamp(28px,4vw,72px);
+  }
+}
+.section{padding:110px 0;position:relative}
+.section-head{max-width:720px;margin-bottom:52px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;
+  letter-spacing:.18em;font-size:.72rem;font-weight:800;color:var(--accent);
+  margin-bottom:13px
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+h1,h2,h3{line-height:1.08;margin:0 0 16px;letter-spacing:-.035em}
+h2{font-size:clamp(2rem,4vw,3.5rem)}
+p{color:var(--muted);margin:0 0 18px}
+.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.grid-bg{
+  position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:32px 32px; mask-image:linear-gradient(90deg,transparent,black 18%,black 82%,transparent)
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:13px 18px;border-radius:14px;border:1px solid var(--line2);
+  background:linear-gradient(135deg,rgba(85,217,255,.15),rgba(124,140,255,.09));
+  color:var(--text);font-weight:800;letter-spacing:.04em;transition:.25s ease;
+  position:relative;overflow:hidden
+}
+.btn::after{content:"";position:absolute;inset:-80% 60% -80% -20%;background:rgba(255,255,255,.13);transform:rotate(20deg);transition:.5s}
+.btn:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 12px 35px rgba(85,217,255,.14)}
+.btn:hover::after{left:120%}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#03101a;border-color:transparent}
+.icon-btn{
+  width:44px;height:44px;border:1px solid var(--line);border-radius:14px;background:var(--panel);
+  color:var(--text);display:grid;place-items:center;transition:.25s
+}
+.icon-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card{
+  background:linear-gradient(145deg,var(--panel),rgba(5,14,28,.45));
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.skip{position:fixed;left:12px;top:10px;z-index:1000;transform:translateY(-150%);background:var(--panel2);padding:10px 15px;border-radius:10px}
+.skip:focus{transform:none}
+
+
+.loader{
+  position:fixed;inset:0;z-index:9999;background:#030811;display:grid;place-items:center;
+  transition:opacity .8s ease,visibility .8s ease
+}
+.loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(85,217,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(85,217,255,.09) 1px,transparent 1px);background-size:45px 45px}
+.loader-scan{position:absolute;left:0;right:0;height:2px;background:var(--accent);box-shadow:0 0 25px var(--accent);animation:loaderScan 2.5s linear infinite}
+.loader-core{width:min(520px,86%);text-align:center;position:relative}
+.loader-mark{font-size:clamp(2.5rem,9vw,5.5rem);font-weight:950;letter-spacing:.09em;background:linear-gradient(90deg,#fff,var(--accent),#a8b0ff);-webkit-background-clip:text;color:transparent}
+.loader-sub{font-size:.78rem;letter-spacing:.25em;color:#82a5ba;text-transform:uppercase;margin:10px 0 26px}
+.loader-bar{height:4px;background:#112132;border-radius:99px;overflow:hidden}
+.loader-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#8b9bff);box-shadow:0 0 18px var(--accent);transition:width .2s}
+.loader-meta{display:flex;justify-content:space-between;margin-top:10px;color:#69869b;font-size:.72rem}
+.loader-percent{color:#dff8ff;font-weight:800}
+.draft-symbol{position:absolute;border:1px solid rgba(85,217,255,.35);width:90px;height:90px;left:50%;top:50%;margin:-45px;animation:spin 9s linear infinite;opacity:.28}
+.draft-symbol::before,.draft-symbol::after{content:"";position:absolute;inset:15px;border:1px solid rgba(85,217,255,.45);transform:rotate(45deg)}
+.draft-symbol::after{inset:31px;border-radius:50%}
+
+
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--navH);display:flex;align-items:center;
+  border-bottom:1px solid transparent;transition:.3s
+}
+.nav.scrolled{background:color-mix(in srgb,var(--bg) 75%,transparent);backdrop-filter:blur(18px);border-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:950;letter-spacing:.05em;display:flex;align-items:center;gap:10px}
+.logo-box{width:34px;height:34px;border:1px solid var(--accent);display:grid;place-items:center;transform:rotate(45deg);box-shadow:0 0 20px rgba(85,217,255,.18)}
+.logo-box span{transform:rotate(-45deg);font-size:.7rem;color:var(--accent)}
+.logo small{display:block;font-size:.58rem;letter-spacing:.18em;color:var(--muted);font-weight:700}
+.nav-links{display:flex;gap:5px;align-items:center}
+.nav-links a{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--muted);padding:10px 9px;border-radius:10px;transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:rgba(85,217,255,.07)}
+.nav-actions{display:flex;gap:8px}
+.menu{display:none}
+
+
+.hero{min-height:100svh;padding-top:calc(var(--navH) + 60px);display:flex;align-items:center;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center}
+.hero-kicker{display:flex;gap:10px;align-items:center;color:var(--accent);font-size:.72rem;letter-spacing:.2em;font-weight:900;text-transform:uppercase}
+.hero-kicker span{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 15px var(--good);animation:pulse 1.8s infinite}
+.hero h1{font-size:clamp(3.4rem,7vw,7rem);font-weight:950;margin:15px 0}
+.hero h1 .outline{-webkit-text-stroke:1px var(--line2);color:transparent}
+.role{font-size:clamp(1rem,2vw,1.35rem);color:var(--text);min-height:2em}
+.role b{color:var(--accent)}
+.hero-copy{max-width:650px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-stats{display:flex;gap:30px;margin-top:42px}
+.stat strong{font-size:1.45rem;display:block}.stat span{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.hero-visual{min-height:560px;display:grid;place-items:center;position:relative;perspective:1000px}
+.profile-shell{width:min(390px,80vw);aspect-ratio:1/1.14;position:relative;transform-style:preserve-3d;transition:transform .18s ease}
+.profile-frame{position:absolute;inset:8%;border:1px solid var(--line2);background:linear-gradient(145deg,rgba(85,217,255,.1),rgba(124,140,255,.05));box-shadow:0 0 80px rgba(85,217,255,.12);overflow:hidden;clip-path:polygon(8% 0,92% 0,100% 8%,100% 92%,92% 100%,8% 100%,0 92%,0 8%)}
+.profile-img{width:100%;height:100%;object-fit:cover;object-position:center;background:linear-gradient(145deg,#102238,#07101c)}
+.profile-img.missing{display:grid;place-items:center;color:#7e9aac;font-weight:800;text-align:center;padding:25px}
+.ring{position:absolute;inset:2%;border:1px dashed rgba(85,217,255,.55);border-radius:50%;animation:spin 18s linear infinite}
+.ring.r2{inset:-5%;border-color:rgba(124,140,255,.28);animation-direction:reverse;animation-duration:28s}
+.ring::before,.ring::after{content:"";position:absolute;width:11px;height:11px;border:2px solid var(--accent);border-radius:50%;background:var(--bg)}
+.ring::before{left:10%;top:10%}.ring::after{right:8%;bottom:18%}
+.scan-line{position:absolute;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);box-shadow:0 0 20px var(--accent);animation:photoScan 4s ease-in-out infinite}
+.tech-label{position:absolute;font-size:.62rem;letter-spacing:.13em;color:var(--accent);border:1px solid var(--line);padding:7px 9px;background:var(--panel);backdrop-filter:blur(8px)}
+.label1{left:0;top:16%}.label2{right:0;top:33%}.label3{left:-3%;bottom:20%}.label4{right:1%;bottom:10%}
+.corner{position:absolute;width:34px;height:34px;border-color:var(--accent);opacity:.7}
+.c1{left:0;top:0;border-left:1px solid;border-top:1px solid}.c2{right:0;top:0;border-right:1px solid;border-top:1px solid}.c3{left:0;bottom:0;border-left:1px solid;border-bottom:1px solid}.c4{right:0;bottom:0;border-right:1px solid;border-bottom:1px solid}
+.float-shape{position:absolute;border:1px solid var(--line2);opacity:.55;pointer-events:none}
+.fs1{width:80px;height:80px;right:5%;top:8%;transform:rotate(45deg);animation:float 7s ease-in-out infinite}
+.fs2{width:42px;height:42px;left:5%;bottom:16%;border-radius:50%;animation:float 5s ease-in-out infinite reverse}
+.hero-blueprint{position:absolute;inset:0;pointer-events:none;opacity:.6}
+
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.info-card{padding:23px;min-height:140px;position:relative;overflow:hidden}
+.info-card::after{content:"";position:absolute;width:100px;height:100px;border:1px solid var(--line);right:-45px;bottom:-45px;border-radius:50%}
+.info-card .label{font-size:.67rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
+.info-card strong{display:block;font-size:1.2rem;margin-top:8px}
+.about-story{padding:30px}
+.about-story .signature{font-family:cursive;color:var(--accent);font-size:1.5rem;margin-top:30px}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.skill-card{padding:27px;position:relative;overflow:hidden;transition:.3s}
+.skill-card:hover{transform:translateY(-7px);border-color:var(--line2)}
+.skill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.skill-icon{width:45px;height:45px;border:1px solid var(--line2);display:grid;place-items:center;border-radius:13px;color:var(--accent)}
+.skill-card h3{font-size:1.15rem}
+.skill-list{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{font-size:.7rem;color:var(--muted);padding:7px 9px;border:1px solid var(--line);border-radius:9px;background:rgba(85,217,255,.03)}
+.skill-meter{height:3px;background:rgba(130,160,180,.15);margin-top:22px;overflow:hidden}
+.skill-meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1.2s ease}
+
+
+.blueprint{
+  background:#061b2a;color:#e7faff;overflow:hidden
+}
+[data-theme="light"] .blueprint{background:#d7edf5;color:#102133}
+.blueprint::before{
+  content:"";position:absolute;inset:0;opacity:.55;
+  background-image:linear-gradient(rgba(99,213,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(99,213,255,.12) 1px,transparent 1px);
+  background-size:25px 25px
+}
+.draft-stage{height:340px;position:relative;border:1px solid rgba(120,220,255,.28);border-radius:22px;overflow:hidden;background:rgba(1,18,31,.3)}
+[data-theme="light"] .draft-stage{background:rgba(255,255,255,.22)}
+.draft-svg{width:100%;height:100%}
+.draft-svg *{vector-effect:non-scaling-stroke}
+.draw-line{stroke:var(--accent);stroke-width:1;fill:none;stroke-dasharray:700;stroke-dashoffset:700;transition:stroke-dashoffset 2s ease}
+.visible .draw-line{stroke-dashoffset:0}
+.dimension{stroke:#a9dff0;stroke-width:.8;fill:none;opacity:.7}
+.dimension-text{fill:#a9dff0;font-size:10px;letter-spacing:1px}
+.draft-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:20px}
+.draft-card{padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(1,17,29,.4);transition:.3s}
+[data-theme="light"] .draft-card{background:rgba(255,255,255,.4)}
+.draft-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.draft-thumb{height:125px;border:1px dashed var(--line2);border-radius:12px;display:grid;place-items:center;margin-bottom:14px;position:relative;overflow:hidden}
+.draft-thumb::before{content:"IMAGE PLACEHOLDER";font:700 .58rem monospace;letter-spacing:.15em;color:var(--muted)}
+.draft-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+
+
+.workspace{padding:30px}
+.workspace-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.status{font:700 .7rem monospace;color:var(--good);letter-spacing:.12em}
+.anim-screen{height:230px;border:1px solid var(--line);border-radius:17px;margin:22px 0;background:
+  linear-gradient(rgba(85,217,255,.06) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(85,217,255,.06) 1px,transparent 1px);
+  background-size:25px 25px;position:relative;overflow:hidden
+}
+.moving-orb{width:54px;height:54px;border:1px solid var(--accent);border-radius:50%;position:absolute;left:10%;top:45%;box-shadow:0 0 35px rgba(85,217,255,.22);animation:motionPath 5s ease-in-out infinite}
+.motion-path{position:absolute;left:8%;right:8%;top:54%;height:1px;border-top:1px dashed var(--line2);transform:rotate(-8deg)}
+.timeline{height:88px;position:relative;border-top:1px solid var(--line);overflow:hidden}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:25px;border-top:1px solid var(--line)}
+.frames{display:flex;justify-content:space-between;padding-top:10px;color:var(--muted);font:10px monospace}
+.keyframes{position:absolute;top:19px;left:7%;right:7%;height:15px}
+.keyframes i{position:absolute;width:10px;height:10px;background:var(--accent);transform:rotate(45deg);box-shadow:0 0 12px var(--accent)}
+.play-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--accent);background:rgba(85,217,255,.1);color:var(--accent)}
+.anim-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px}
+.anim-card{padding:16px;border:1px solid var(--line);border-radius:15px;transition:.3s}
+.anim-card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.anim-card b{font-size:.83rem}.anim-card p{font-size:.72rem;margin:6px 0 0}
+
+
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project{overflow:hidden;cursor:pointer;transition:.3s;position:relative}
+.project:hover{transform:translateY(-8px);border-color:var(--line2)}
+.project-media{height:210px;position:relative;overflow:hidden;background:
+  linear-gradient(135deg,rgba(85,217,255,.14),rgba(124,140,255,.1)),
+  repeating-linear-gradient(45deg,transparent 0 18px,rgba(85,217,255,.05) 19px 20px)}
+.project-media img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.project:hover img{transform:scale(1.05)}
+.project-media::after{content:"VIEW PROJECT";position:absolute;inset:auto 15px 15px auto;padding:7px 9px;font:800 .6rem monospace;letter-spacing:.13em;border:1px solid var(--line2);background:rgba(3,10,18,.65);backdrop-filter:blur(8px)}
+.project-body{padding:21px}
+.project-cat{font:700 .62rem monospace;color:var(--accent);letter-spacing:.15em}
+.project h3{font-size:1.2rem;margin:7px 0}.project p{font-size:.84rem}
+.tool-line{font-size:.65rem;color:var(--muted);font-family:monospace}
+.modal{position:fixed;inset:0;z-index:500;display:grid;place-items:center;padding:20px;background:rgba(0,5,12,.76);backdrop-filter:blur(16px);opacity:0;visibility:hidden;transition:.3s}
+.modal.open{opacity:1;visibility:visible}
+.modal-box{width:min(940px,96vw);max-height:90vh;overflow:auto;background:var(--panel2);border:1px solid var(--line2);border-radius:25px;box-shadow:0 30px 100px rgba(0,0,0,.55);transform:translateY(20px) scale(.98);transition:.35s}
+.modal.open .modal-box{transform:none}
+.modal-close{position:absolute;right:18px;top:18px}
+.modal-content{display:grid;grid-template-columns:1fr 1fr}
+.modal-image{min-height:430px;background:linear-gradient(135deg,#0a1b2e,#07101b);display:grid;place-items:center}
+.modal-image img{width:100%;height:100%;object-fit:cover}.modal-info{padding:42px}
+.modal-info h2{font-size:2.2rem}.modal-info .pill-row{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0}
+.pill{border:1px solid var(--line);padding:6px 9px;border-radius:9px;font-size:.68rem;color:var(--muted)}
+
+
+.timeline-section{position:relative}
+.journey{position:relative;max-width:850px;margin:auto}
+.journey::before{content:"";position:absolute;left:22px;top:0;bottom:0;width:1px;background:linear-gradient(var(--accent),transparent)}
+.journey-progress{position:absolute;left:21px;top:0;width:3px;height:0;background:var(--accent);box-shadow:0 0 14px var(--accent);z-index:1;transition:height .2s}
+.journey-item{position:relative;padding:0 0 55px 65px}
+.j-dot{position:absolute;left:14px;top:4px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 0 5px rgba(85,217,255,.08),0 0 18px rgba(85,217,255,.3);z-index:2}
+.journey-item span{font:800 .65rem monospace;color:var(--accent);letter-spacing:.15em}.journey-item h3{margin:8px 0;font-size:1.3rem}
+.immersion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.imm-card{padding:24px;min-height:170px;transition:.3s}.imm-card:hover{transform:translateY(-6px)}
+.imm-num{font:800 .65rem monospace;color:var(--accent)}.imm-card h3{margin:14px 0 7px;font-size:1.15rem}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.achievement{padding:24px;border:1px dashed var(--line2);min-height:150px;position:relative}
+.achievement::before{content:"PLACEHOLDER";position:absolute;right:14px;top:14px;font:700 .5rem monospace;color:var(--muted);letter-spacing:.12em}
+.achievement h3{font-size:1.05rem;margin-top:30px}
+
+
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:20px}
+.contact-info,.contact-form{padding:30px}
+.contact-list{display:grid;gap:12px;margin-top:25px}
+.contact-item{padding:14px;border:1px solid var(--line);border-radius:13px}
+.contact-item small{display:block;color:var(--muted);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase}
+.contact-item b{display:block;margin-top:4px;overflow-wrap:anywhere}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:7px;margin-bottom:12px}.field.full{grid-column:1/-1}
+label{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:800}
+input,textarea{
+  width:100%;border:1px solid var(--line);border-radius:13px;padding:13px 14px;
+  background:rgba(0,0,0,.08);color:var(--text);outline:none;transition:.2s
+}
+textarea{min-height:145px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(85,217,255,.08)}
+.form-note{font-size:.7rem;color:var(--muted);margin-top:10px}
+footer{padding:35px 0;border-top:1px solid var(--line)}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+.footer-name{font-weight:900}.footer-sub{font-size:.7rem;color:var(--muted);margin-top:4px}
+.socials{display:flex;gap:8px}
+.toast{position:fixed;right:20px;bottom:20px;z-index:900;padding:13px 16px;border:1px solid var(--line2);background:var(--panel2);border-radius:13px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.3s;font-size:.8rem}
+.toast.show{transform:none;opacity:1}
+
+
+#particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.parallax-orb{position:absolute;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(85,217,255,.12),transparent 68%);filter:blur(5px);pointer-events:none}
+.scroll-progress{position:fixed;left:0;top:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:300;box-shadow:0 0 10px var(--accent)}
+
+
+@keyframes scan{0%{transform:translateY(-180px)}100%{transform:translateY(100vh)}}
+@keyframes loaderScan{0%{top:-5%}100%{top:105%}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.55}}
+@keyframes float{50%{transform:translateY(-15px) rotate(55deg)}}
+@keyframes photoScan{0%,100%{top:8%}50%{top:90%}}
+@keyframes motionPath{0%,100%{transform:translate(0,0)}50%{transform:translate(580px,-45px)}}
+
+
+@media(max-width:1000px){
+  .nav-links{position:fixed;top:var(--navH);left:4%;right:4%;display:grid;gap:3px;padding:12px;background:var(--panel2);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);transform:translateY(-20px);opacity:0;visibility:hidden;transition:.25s}
+  .nav-links.open{transform:none;opacity:1;visibility:visible}
+  .nav-links a{padding:13px}
+  .menu{display:grid}
+  .hero-inner{grid-template-columns:1fr;gap:20px}.hero-visual{min-height:470px}.hero-copy{max-width:800px}
+  .skills-grid{grid-template-columns:1fr 1fr}.draft-cards{grid-template-columns:1fr 1fr}.anim-cards{grid-template-columns:repeat(3,1fr)}
+  .project-grid{grid-template-columns:1fr 1fr}.about-grid,.contact-grid{grid-template-columns:1fr}
+  .immersion-grid{grid-template-columns:1fr 1fr}.ach-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  :root{--navH:66px}
+  .section{padding:75px 0}.container{width:min(92%,540px);max-width:none;padding-left:0;padding-right:0}
+  .hero{padding-top:100px}.hero h1{font-size:clamp(3rem,15vw,5rem)}
+  .hero-stats{gap:18px;flex-wrap:wrap}.hero-visual{min-height:400px}.profile-shell{width:min(330px,84vw)}
+  .about-grid,.info-grid,.skills-grid,.draft-cards,.project-grid,.immersion-grid,.ach-grid,.form-grid{grid-template-columns:1fr}
+  .anim-cards{grid-template-columns:1fr 1fr}.draft-stage{height:250px}
+  .modal-content{grid-template-columns:1fr}.modal-image{min-height:250px}.modal-info{padding:25px}
+  .workspace{padding:18px}.anim-screen{height:190px}
+  .motion-path{display:none}.moving-orb{animation-duration:4s}
+  .footer-inner{align-items:flex-start;flex-direction:column}
+  .custom-cursor{display:none!important}
+}
+@media(hover:none),(pointer:coarse){.custom-cursor{display:none!important}}
+
+body, body *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 32 32'%3E%3Cpath d='M5 2.8v22.6l6.4-5.5 4.2 8.4 3.5-1.8-4.1-8.3h8.1L5 2.8z' fill='%23050914' stroke='%2355d9ff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, auto}
+button, a, input, textarea, .project, .skill-card, .draft-card, .anim-card{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M5 2.8v22.6l6.4-5.5 4.2 8.4 3.5-1.8-4.1-8.3h8.1L5 2.8z' fill='%237c8cff' stroke='%23edf7ff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, pointer}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.loader-scan,.draft-symbol,.ring,.fs1,.fs2,.moving-orb,body::after{animation:none!important}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+
+.custom-cursor{position:fixed;z-index:10000;width:22px;height:22px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .18s,height .18s,border-color .18s;display:block}
+.custom-cursor::after{content:"";position:absolute;left:50%;top:50%;width:3px;height:3px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);box-shadow:0 0 8px var(--accent)}
+.custom-cursor.hover{width:42px;height:42px;border-color:var(--accent2)}
+.project-actions{margin-top:18px}.website-button{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid var(--line2);border-radius:10px;background:linear-gradient(135deg,rgba(85,217,255,.12),rgba(124,140,255,.08));color:var(--accent);font:800 .68rem monospace;letter-spacing:.12em;text-decoration:none;transition:.3s}.website-button:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 0 20px rgba(85,217,255,.18)}.website-button span{font-size:1rem;transition:.3s}.website-button:hover span{transform:translate(3px,-3px)}
+
+
+/* =========================================================
+   LEARN LANGUAGE SECTION
+========================================================= */
+.learn-language-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.language-card{
+  padding:26px;
+  position:relative;
+  overflow:hidden;
+  transition:.3s ease;
+}
+.language-card:hover{
+  transform:translateY(-7px);
+  border-color:var(--line2);
+  box-shadow:0 18px 55px rgba(85,217,255,.10);
+}
+.language-card::before{
+  content:"";
+  position:absolute;
+  width:150px;height:150px;
+  right:-70px;top:-75px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(85,217,255,.14),transparent 68%);
+  pointer-events:none;
+}
+.language-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+.language-icon{
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  border:1px solid var(--line2);
+  border-radius:15px;
+  background:rgba(85,217,255,.07);
+  font:900 1.05rem monospace;
+  color:var(--accent);
+}
+.language-number{
+  font:800 .65rem monospace;
+  color:var(--muted);
+  letter-spacing:.14em;
+}
+.language-card h3{font-size:1.35rem;margin-bottom:8px}
+.language-card p{font-size:.86rem}
+.language-tags{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0}
+.language-tag{
+  padding:6px 9px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  color:var(--muted);
+  font:700 .63rem monospace;
+  letter-spacing:.04em;
+}
+.language-progress{margin-top:20px}
+.language-progress-head{
+  display:flex;justify-content:space-between;gap:12px;
+  margin-bottom:8px;
+  font:700 .64rem monospace;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+.language-progress-bar{
+  height:6px;
+  border-radius:99px;
+  background:rgba(105,204,255,.09);
+  overflow:hidden;
+  border:1px solid rgba(105,204,255,.10);
+}
+.language-progress-bar i{
+  display:block;height:100%;width:0;
+  border-radius:99px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  box-shadow:0 0 14px rgba(85,217,255,.35);
+  transition:width 1s cubic-bezier(.2,.8,.2,1);
+}
+.language-code{
+  margin-top:20px;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:rgba(0,0,0,.16);
+  color:var(--text);
+  font:500 .7rem/1.7 "SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  overflow:auto;
+  white-space:pre;
+}
+.language-code .tag{color:var(--accent)}
+.language-code .attr{color:var(--accent2)}
+.language-code .value{color:var(--good)}
+.learn-footer{
+  margin-top:18px;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.learn-footer strong{display:block;margin-bottom:3px}
+.learn-footer span{font-size:.74rem;color:var(--muted)}
+@media(max-width:1000px){
+  .learn-language-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .learn-language-grid{grid-template-columns:1fr}
+@media(max-width:650px){
+  .learn-language-grid{grid-template-columns:1fr}
+  .language-card{padding:22px}
+}
+
+/* ===== Scrollable public message list (shows ~5 messages) ===== */
+#publicMessageList{
+  display:grid;
+  gap:12px;
+  margin-top:22px;
+  max-height:420px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding-right:6px;
+  scroll-behavior:smooth;
+}
+#publicMessageList::-webkit-scrollbar{width:6px}
+#publicMessageList::-webkit-scrollbar-track{background:rgba(85,217,255,.06);border-radius:99px}
+#publicMessageList::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:99px}
+#publicMessageList::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+@supports (scrollbar-width:thin){
+  #publicMessageList{scrollbar-width:thin;scrollbar-color:var(--accent) rgba(85,217,255,.06)}
+}
+
+}
+
+</style>
+
+<style>
+@media (max-width: 760px){
+  #projects .project-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+</style>
+
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="custom-cursor" id="cursor"></div>
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<!-- =========================================================
+     LOADING SCREEN
+========================================================= -->
+<div class="loader" id="loader" aria-label="Loading portfolio">
+  <div class="loader-grid"></div><div class="loader-scan"></div><div class="draft-symbol"></div>
+  <div class="loader-core">
+    <div class="loader-mark">Rex WebDev</div>
+    <div class="loader-sub">RexTabuan // Future Website Developer</div>
+    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    <div class="loader-meta"><span id="loaderText">Initializing Digital Workspace...</span><span class="loader-percent" id="loaderPercent">0%</span></div>
+  </div>
+</div>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="logo" aria-label="Home">
+      <span class="logo-box"><span>TD</span></span>
+      <span><b id="navName">YOUR NAME</b><small>ICT • TDA</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+      <a href="#home">HOME</a><a href="#about">ABOUT</a><a href="#skills">SKILLS</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#learn-language">LEARN</a>
+      <a href="#journey">JOURNEY</a><a href="#contact">CONTACT</a><a href="#publicMessages">MESSAGES</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle light and dark theme">☼</button>
+      <button class="icon-btn menu" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero section" id="home">
+  <div class="grid-bg"></div>
+  <div class="parallax-orb" style="left:-80px;top:30%"></div>
+  <div class="parallax-orb" style="right:-100px;top:10%"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy reveal">
+      <div class="hero-kicker"><span></span> Digital Workspace Online</div>
+      <h1>WEBSITE<br><span class="outline" id="heroName">PORTFOLIO</span></h1>
+      <div class="role"><b id="roleText">RexTabuan</b></div>
+      <p style="max-width:630px;margin-top:18px">A Personal Website Portfolio Showcasing my web development, design, and digital creativity.</p>
+      <div class="hero-buttons">
+        <a class="btn primary" href="#projects">VIEW MY WORK ↗</a>
+        <a class="btn" href="#about">ABOUT ME ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>12</strong><span>Grade Level</span></div>
+        <div class="stat"><strong>TDA</strong><span>Specialization</span></div>
+        <div class="stat"><strong>2</strong><span>WEBSITE PROJECT</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" id="heroVisual">
+      <div class="float-shape fs1"></div><div class="float-shape fs2"></div>
+      <div class="profile-shell" id="profileShell">
+        <div class="ring"></div><div class="ring r2"></div>
+        <div class="profile-frame">
+          <img id="profileImage" class="profile-img" src="assets/profile.jpg" alt="Profile photo of the portfolio owner" loading="eager">
+          <div class="scan-line"></div>
+          <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+        </div>
+        <span class="tech-label label1">STUDENT // 12</span>
+        <span class="tech-label label2">ICT // TDA</span>
+        <span class="tech-label label3">BISAYANG IT</span>
+        <span class="tech-label label4">JNHS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">01 // Identity</div>
+      <h2>ABOUT ME</h2><p>Learning. Creating. Designing.</p>
+    </div>
+    <div class="about-grid">
+      <article class="about-story card reveal">
+        <p> Hi, I'm a <b>Jul Rex Tabuan </b> 18 Years Old and I am currently studying in Jagobiao National High School, Technical Drafting, Animation major that love building Website Coding HTML, CSS JAVASCRIPT. Im Not Professional Website Developer but i can make an Website for business. i do advance study in Programming language to take good advantage in college.</p>
+        <p>I believe good digital work combines precision with creativity from a carefully dimensioned drawing to a smooth animation or a functional website.</p>
+        <div class="signature">Keep learning. Keep creating.</div>
+      </article>
+      <div class="info-grid">
+        <article class="info-card card reveal"><span class="label">Grade Level</span><strong>GRADE 12</strong><p>Senior High School</p></article>
+        <article class="info-card card reveal"><span class="label">Strand</span><strong>ICT – TDA</strong><p>Technical Drafting & Animation</p></article>
+        <article class="info-card card reveal"><span class="label">Interest</span><strong>TECHNOLOGY & CODING</strong><p>HTML, CSS, JAVASCRIPT</p></article>
+        <article class="info-card card reveal"><span class="label">Focus</span><strong>DRAFTING & ANIMATION</strong><p>Practice-based learning</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SKILLS
+========================================================= -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">02 // Capability Map</div><h2>ICT-TDA AND CODING SKILLS</h2>
+      <p>Learning and practice areas.</p>
+    </div>
+    <div class="skills-grid">
+      <article class="skill-card card reveal"><div class="skill-top"><div class="skill-icon">📐</div><span class="mono" style="font-size:.65rem;color:var(--accent)">01</span></div>
+        <h3>Technical Drafting</h3><div class="skill-list">
+          <span class="skill-tag">Technical Drawing</span><span class="skill-tag">Basic CAD Concepts</span><span class="skill-tag">2D Drafting</span><span class="skill-tag">Geometric Construction</span><span class="skill-tag">Dimensioning</span><span class="skill-tag">Layout</span><span class="skill-tag">Blueprint Reading</span>
+        </div><div class="skill-meter"><i data-width="78%"></i></div>
+      </article>
+      <article class="skill-card card reveal"><div class="skill-top"><div class="skill-icon">&lt;/&gt;</div><span class="mono" style="font-size:.65rem;color:var(--accent)">02</span></div>
+        <h3>ICT / Digital</h3><div class="skill-list">
+          <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Basic Programming</span><span class="skill-tag">Digital Design</span><span class="skill-tag">File Management</span><span class="skill-tag">Computer Troubleshooting</span>
+        </div><div class="skill-meter"><i data-width="76%"></i></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">03 // Portfolio Archive</div><h2>PROJECTS</h2>
+      <p>My Project Building in Website.</p>
+    </div>
+    <div class="project-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));justify-content:center;">
+      <article class="project card reveal" data-project="0">
+        <div class="project-media">
+          <img data-asset="Screenshot_2026_0828_065156.png" alt="RexTabuan website project placeholder" loading="lazy">
+        </div>
+        <div class="project-body">
+          <span class="project-cat">WEBSITE PROJECT</span>
+          <h3>RexTabuan Website Project</h3>
+          <p>RELATED REVIEW LITERATURE & RELATED REVIEW STUDY</p>
+          <span class="tool-line">TOOLS // HTML • CSS • JavaScript</span>
+          <div class="project-actions"><a class="website-button" id="openWebsiteBtn" href="#" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">OPEN WEBSITE <span>↗</span></a></div>
+        </div>
+      </article>
+
+      <article class="project card reveal" data-project="1">
+        <div class="project-media">
+          <div style="width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.01));">
+         <img data-asset="mirai.png" alt="RexTabuan website project placeholder" loading="lazy">  </div>
+        </div>
+        <div class="project-body">
+          <span class="project-cat">WEB APPLICATION</span>
+          <h3>Mirai Kitchen Restaurant</h3>
+          <p>Japanese Restaurant In Cebu.</p>
+          <span class="tool-line">TOOLS // HTML • CSS • JavaScript • Firebase</span>
+          <div class="project-actions">
+            <a class="website-button" href="https://mirai-kitchen-psi.vercel.app/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">OPEN WEBSITE <span>↗</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     LEARN LANGUAGE
+========================================================= -->
+<section class="section" id="learn-language">
+  <div class="grid-bg"></div>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">04 // Learning Lab</div>
+      <h2>LEARN LANGUAGE</h2>
+      <p>My coding learning path — HTML for structure, CSS for design, and JavaScript for interaction.</p>
+    </div>
+
+    <div class="learn-language-grid">
+      <article class="language-card card reveal">
+        <div class="language-top">
+          <div class="language-icon">&lt;/&gt;</div>
+          <span class="language-number">01 // HTML</span>
+        </div>
+        <h3>HTML</h3>
+        <p>Build the structure and content of a website using semantic elements.</p>
+        <div class="language-tags">
+          <span class="language-tag">STRUCTURE</span>
+          <span class="language-tag">SEMANTIC TAGS</span>
+          <span class="language-tag">FORMS</span>
+        </div>
+        <div class="language-code"><span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="value">"learn"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h2&gt;</span>Learn HTML<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;/section&gt;</span></div>
+        <div class="language-progress">
+          <div class="language-progress-head"><span>Learning Progress</span><b>85%</b></div>
+          <div class="language-progress-bar"><i data-language-width="85%"></i></div>
+        </div>
+      </article>
+
+      <article class="language-card card reveal">
+        <div class="language-top">
+          <div class="language-icon">#</div>
+          <span class="language-number">02 // CSS</span>
+        </div>
+        <h3>CSS</h3>
+        <p>Design responsive interfaces with layouts, animations, effects, and visual styling.</p>
+        <div class="language-tags">
+          <span class="language-tag">LAYOUT</span>
+          <span class="language-tag">RESPONSIVE</span>
+          <span class="language-tag">ANIMATION</span>
+        </div>
+        <div class="language-code"><span class="tag">.card</span> {
+  <span class="attr">display</span>: <span class="value">grid</span>;
+  <span class="attr">gap</span>: <span class="value">18px</span>;
+  <span class="attr">border-radius</span>: <span class="value">20px</span>;
+}</div>
+        <div class="language-progress">
+          <div class="language-progress-head"><span>Learning Progress</span><b>82%</b></div>
+          <div class="language-progress-bar"><i data-language-width="82%"></i></div>
+        </div>
+      </article>
+
+      <article class="language-card card reveal">
+        <div class="language-top">
+          <div class="language-icon">JS</div>
+          <span class="language-number">03 // JAVASCRIPT</span>
+        </div>
+        <h3>JavaScript</h3>
+        <p>Add logic and interaction so a website can respond to users and change dynamically.</p>
+        <div class="language-tags">
+          <span class="language-tag">LOGIC</span>
+          <span class="language-tag">DOM</span>
+          <span class="language-tag">EVENTS</span>
+        </div>
+        <div class="language-code"><span class="tag">const</span> button = document.querySelector(<span class="value">"#learn"</span>);
+button.addEventListener(<span class="value">"click"</span>, () =&gt; {
+  console.log(<span class="value">"Keep learning!"</span>);
+});</div>
+        <div class="language-progress">
+          <div class="language-progress-head"><span>Learning Progress</span><b>47%</b></div>
+          <div class="language-progress-bar"><i data-language-width="47%"></i></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="learn-footer card reveal">
+      <div>
+        <strong>WEB DEVELOPMENT STACK</strong>
+        <span>HTML + CSS + JavaScript — the foundation I use for my website projects.</span>
+      </div>
+      <a class="btn primary" href="#projects">VIEW MY PROJECTS ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     JOURNEY
+========================================================= -->
+<section class="section" id="journey">
+  <div class="container">
+    <div class="section-head reveal"><div class="eyebrow">05 // Progress Log</div><h2>MY LEARNING JOURNEY</h2><p>A simple record of growth from classroom learning to real-world preparation.</p></div>
+    <div class="journey reveal" id="journeyTimeline"><div class="journey-progress" id="journeyProgress"></div>
+      <article class="journey-item"><i class="j-dot"></i><span>GRADE 11</span><h3>Started exploring ICT and digital technology.</h3><p>Built an early foundation in digital tools, computer concepts, and creative technology.</p></article>
+      <article class="journey-item"><i class="j-dot"></i><span>GRADE 12</span><h3>Developed technical drafting and animation skills.</h3><p>Focused on practice, projects, digital creativity, and technical precision.</p></article>
+      <article class="journey-item"><i class="j-dot"></i><span>PROJECTS</span><h3>Applied skills through school activities and personal projects.</h3><p>Turned lessons into tangible outputs and continued experimenting with new tools.</p></article>
+      <article class="journey-item"><i class="j-dot"></i><span>WORK IMMERSION</span><h3>Preparing to apply classroom knowledge in a real-world environment.</h3><p>Building communication, teamwork, responsibility, problem-solving, and digital skills.</p></article>
+      <article class="journey-item"><i class="j-dot"></i><span>FUTURE</span><h3>Continue developing technology, design, and creative skills and Become an Website Developer Full Stack.</h3><p>Keep learning and prepare for future study, work, and opportunities.</p></article>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal"><div class="eyebrow">06 // Open Channel</div><h2>LET'S CONNECT</h2><p>Available for collaboration, school projects, creative projects, and learning opportunities.</p></div>
+    <div class="contact-grid">
+      <article class="contact-info card reveal">
+        <h3>Contact Console</h3><p>Use the details below as your public contact information. Replace them in the configuration object.</p>
+        <div class="contact-list">
+          <div class="contact-item"><small>Email</small><b id="emailDisplay">your@email.com</b></div>
+          <div class="contact-item"><small>Location</small><b id="locationDisplay">Philippines</b></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap">
+          <button class="btn" id="copyEmail">COPY EMAIL</button>
+          <a class="btn" id="emailLink" href="mailto:your@email.com">EMAIL ME ↗</a>
+        </div>
+      </article>
+      <form class="contact-form card reveal" id="contactForm">
+        <div class="form-grid">
+          <div class="field"><label for="senderName">Name</label><input id="senderName" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="senderEmail">Email</label><input id="senderEmail" name="email" type="email" required autocomplete="email"></div>
+          <div class="field full"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+        </div>
+        <button class="btn primary" type="submit">SEND MESSAGE ↗</button>
+        <div class="form-note">Contact Me for any concerns<span class="mono"></span>.</div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="section" id="publicMessages">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">07 // Public Channel</div>
+      <h2>PUBLIC MESSAGE BOARD</h2>
+      <p>Messages posted here can be seen by everyone visiting this portfolio.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info card reveal">
+        <h3>Leave a Message</h3>
+        <p>Anyone can send a message about my portfolio. Please keep messages respectful.</p>
+        <form id="publicMessageForm">
+          <div class="field">
+            <label for="publicName">Name</label>
+            <input id="publicName" maxlength="40" required autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="publicMessage">Message</label>
+            <textarea id="publicMessage" maxlength="500" required placeholder="Write something about my portfolio..."></textarea>
+          </div>
+          <button class="btn primary" type="submit">POST MESSAGE ↗</button>
+          <div class="form-note" id="messageStatus">Public messages are shared with everyone.</div>
+        </form>
+      </div>
+
+      <div class="contact-info card reveal">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <h3 style="margin:0">Messages</h3>
+          <span class="status" id="messageConnection">CONNECTING...</span>
+        </div>
+        <div id="publicMessageList" style="display:grid;gap:12px;margin-top:22px;max-height:420px;overflow-y:auto;padding-right:6px">
+          <div class="contact-item"><small>Messages</small><b>Loading public messages...</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="icon-btn modal-close" id="modalClose" aria-label="Close project details">×</button>
+    <div class="modal-content">
+      <div class="modal-image" id="modalImage"></div>
+      <div class="modal-info">
+        <span class="project-cat" id="modalCat">PROJECT</span>
+        <h2 id="modalTitle">Project</h2>
+        <p id="modalDescription"></p>
+        <div class="pill-row" id="modalTools"></div>
+        <h3 style="font-size:1rem;margin-top:25px">Learning Experience</h3>
+        <p id="modalLearning"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer>
+  <div class="container footer-inner">
+    <div><div class="footer-name" id="footerName">RexTabuan</div><div class="footer-sub">ICT – TDA Student · Technical Drafting • Animation • ICT</div></div>
+<div class="socials">
+  <a class="icon-btn" id="socialFacebook" href="#" target="_blank" rel="noopener" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a class="icon-btn" id="socialInstagram" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a class="icon-btn" id="socialTiktok" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+    <i class="fab fa-tiktok"></i>
+  </a>
+</div>
+    <div class="footer-sub">© 2026 <span id="copyrightName">RexTabuan</span>. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const portfolio = {
+  name: "RexTabuan",
+  strand: "ICT – TDA",
+  grade: "Grade 12",
+  email: "julrextabuan64@gmail.com",
+  location: "Philippines",
+  websiteUrl: "https://acadhelper-zeta.vercel.app/",
+  profileImage: "IMG_20260828_064755.jpg",
+
+  social: {
+    facebook: "https://www.facebook.com/jul.rex.sosas.tabuan",
+    instagram: "https://www.instagram.com/rexsosas?igsh=eTEydXN1cmthMGNo",
+    tiktok: "https://www.tiktok.com/@tabuanyt?_r=1&_t=ZS-99F8MDNMbJv"
+  },
+
+  roles: [
+    "WEBSITE PORTFOLIO",
+    "FUTURE WEB DESIGNER",
+    "FUTURE WEB DEVELOPER",
+    "FUTURE FULL STOCK DEVELOPER"
+  ],
+
+  projects: [
+    {
+      title: "RexTabuan Website Portfolio",
+      category: "WEBSITE PROJECT",
+      image: "Screenshot_2026_0828_065156.png",
+      tools: ["HTML", "CSS", "JavaScript"],
+      description: "Our RRL and RRS Search feature helps students find relevant Review of Related Literature (RRL) and Review of Related Studies (RRS) for their research in one convenient workspace. It makes searching easier by helping users discover academic sources related to their research topic, organize useful references, and quickly access important information that can support their study.",
+    },
+    {
+      title: "Mirai Kitchen Japanese Restaurant",
+      category: "WEB APPLICATION",
+      image: "mirai.png",
+      description: "Japanese Restaurant In Cebu.",
+      tools: ["HTML", "CSS", "JavaScript", "Firebase"],
+      learning: "."
+    }
+  ]
+  
+};
+
+const $ = (s, root=document) => root.querySelector(s);
+const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+const escapeHTML = (str) => String(str).replace(/[&<>"']/g, m => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+}[m]));
+
+function setText(id, value){ const el = $(id); if(el) el.textContent = value; }
+setText("#navName", portfolio.name);
+setText("#heroName", portfolio.name);
+setText("#footerName", portfolio.name);
+setText("#copyrightName", portfolio.name);
+setText("#emailDisplay", portfolio.email);
+setText("#locationDisplay", portfolio.location);
+const openWebsiteBtn = $("#openWebsiteBtn");
+if(openWebsiteBtn) openWebsiteBtn.href = portfolio.websiteUrl;
+
+const profile = $("#profileImage");
+profile.src = portfolio.profileImage;
+profile.addEventListener("error", () => {
+  profile.removeAttribute("src");
+  profile.classList.add("missing");
+  profile.alt = "Profile photo placeholder — add assets/profile.jpg";
+  profile.textContent = "ADD YOUR PHOTO\\nassets/profile.jpg";
+});
+
+$("#emailLink").href = "mailto:" + portfolio.email;
+$("#socialFacebook").href = portfolio.social.facebook;
+$("#socialInstagram").href = portfolio.social.instagram;
+$("#socialTiktok").href = portfolio.social.tiktok;
+
+
+(() => {
+  const loader = $("#loader"), fill = $("#loaderFill"), percent = $("#loaderPercent"), text = $("#loaderText");
+  const messages = [
+    [0,"Initializing Digital Workspace..."],
+    [25,"Loading Blueprint System..."],
+    [50,"Compiling Creative Modules..."],
+    [75,"Preparing Portfolio Interface..."],
+    [100,"Workspace Ready."]
+  ];
+  let p = 0;
+  const timer = setInterval(() => {
+    p += Math.floor(Math.random()*5)+2;
+    if(p >= 100) p = 100;
+    fill.style.width = p + "%"; percent.textContent = p + "%";
+    const current = messages.reduce((a,m)=>p>=m[0]?m:a,messages[0]);
+    text.textContent = current[1];
+    if(p === 100){
+      clearInterval(timer);
+      setTimeout(()=>loader.classList.add("done"),500);
+    }
+  },90);
+})();
+
+
+const nav = $("#nav"), navLinks = $("#navLinks"), menuBtn = $("#menuBtn");
+window.addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 20), {passive:true});
+menuBtn.addEventListener("click", () => {
+  const open = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", open);
+});
+$$(".nav-links a").forEach(a => a.addEventListener("click", ()=> {
+  navLinks.classList.remove("open"); menuBtn.setAttribute("aria-expanded","false");
+}));
+
+const sections = $$("main section[id]");
+const linkMap = new Map($$(".nav-links a").map(a => [a.getAttribute("href").slice(1),a]));
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      $$(".nav-links a").forEach(a=>a.classList.remove("active"));
+      linkMap.get(entry.target.id)?.classList.add("active");
+    }
+  });
+},{rootMargin:"-30% 0px -60% 0px"});
+sections.forEach(s=>navObserver.observe(s));
+
+
+const savedTheme = localStorage.getItem("tda-theme");
+if(savedTheme) document.documentElement.dataset.theme = savedTheme;
+function updateThemeIcon(){
+  $("#themeToggle").textContent = document.documentElement.dataset.theme === "light" ? "☾" : "☼";
+}
+updateThemeIcon();
+$("#themeToggle").addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  if(next === "dark") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = next;
+  localStorage.setItem("tda-theme", next);
+  updateThemeIcon();
+});
+
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      $$(".skill-meter i", entry.target).forEach(i => i.style.width = i.dataset.width || "0");
+      if(entry.target.id === "journeyTimeline") updateJourney();
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+$$(".reveal").forEach(el=>revealObserver.observe(el));
+
+// Animate Learn Language progress bars when their cards enter the viewport.
+$$('.language-progress-bar i').forEach(bar => {
+  bar.dataset.targetWidth = bar.dataset.languageWidth || '0';
+});
+const languageObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.language-progress-bar i').forEach(bar => {
+        bar.style.width = bar.dataset.targetWidth || '0';
+      });
+      languageObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.18});
+$$('.language-card').forEach(card => languageObserver.observe(card));
+
+
+
+$$("[data-asset]").forEach(img => {
+  const src = img.dataset.asset;
+  img.src = src;
+  img.addEventListener("error", () => {
+    img.removeAttribute("src");
+    img.style.display = "none";
+  });
+});
+
+
+let roleIndex = 0;
+const roleText = $("#roleText");
+setInterval(() => {
+  roleIndex = (roleIndex + 1) % portfolio.roles.length;
+  roleText.animate([{opacity:1,transform:"translateY(0)"},{opacity:0,transform:"translateY(7px)"}],{duration:180,fill:"forwards"}).finished.then(()=>{
+    roleText.textContent = portfolio.roles[roleIndex];
+    roleText.animate([{opacity:0,transform:"translateY(-7px)"},{opacity:1,transform:"translateY(0)"}],{duration:300,fill:"forwards"});
+  });
+},2600);
+
+
+const shell = $("#profileShell"), heroVisual = $("#heroVisual");
+if(matchMedia("(pointer:fine)").matches){
+  heroVisual.addEventListener("mousemove", e => {
+    const r = heroVisual.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    shell.style.transform = `rotateY(${x*7}deg) rotateX(${-y*7}deg) translateZ(5px)`;
+  });
+  heroVisual.addEventListener("mouseleave",()=>shell.style.transform="");
+}
+
+
+const canvas = $("#particles"), ctx = canvas.getContext("2d");
+let particles = [], W=0,H=0, dpr=Math.min(devicePixelRatio||1,2);
+function resizeCanvas(){
+  W=innerWidth; H=innerHeight; canvas.width=W*dpr; canvas.height=H*dpr;
+  canvas.style.width=W+"px";canvas.style.height=H+"px";ctx.setTransform(dpr,0,0,dpr,0,0);
+  const count = matchMedia("(max-width:650px)").matches ? 35 : 65;
+  particles = Array.from({length:count},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.4,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,a:Math.random()*.55+.15}));
+}
+resizeCanvas(); addEventListener("resize",resizeCanvas);
+let particleFrame=0;
+function drawParticles(){
+  if(document.hidden) {particleFrame=requestAnimationFrame(drawParticles);return}
+  ctx.clearRect(0,0,W,H);
+  const light = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    ctx.globalAlpha=p.a;ctx.fillStyle=light;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+  });
+  ctx.globalAlpha=1;
+  particleFrame=requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+
+let scrollTick=false;
+addEventListener("scroll",()=>{
+  if(scrollTick)return;scrollTick=true;
+  requestAnimationFrame(()=>{
+    const max=document.documentElement.scrollHeight-innerHeight;
+    $("#scrollProgress").style.width=(scrollY/max*100)+"%";
+    document.body.style.setProperty("--scrollY",scrollY+"px");
+    updateJourney();
+    scrollTick=false;
+  });
+},{passive:true});
+
+
+function updateJourney(){
+  const box=$("#journeyTimeline"); if(!box)return;
+  const r=box.getBoundingClientRect(), visible=Math.max(0,Math.min(1,(innerHeight*.72-r.top)/(r.height*.72)));
+  $("#journeyProgress").style.height=(visible*100)+"%";
+}
+
+
+const modal=$("#projectModal"), modalImage=$("#modalImage"), modalTitle=$("#modalTitle"), modalCat=$("#modalCat"),
+modalDescription=$("#modalDescription"), modalTools=$("#modalTools"), modalLearning=$("#modalLearning");
+let lastFocused=null;
+function openProject(index){
+  const p=portfolio.projects[index]; if(!p)return;
+  modalCat.textContent=p.category; modalTitle.textContent=p.title;
+  modalDescription.textContent=p.description; modalLearning.textContent=p.learning;
+  modalTools.innerHTML=p.tools.map(t=>`<span class="pill">${escapeHTML(t)}</span>`).join("");
+  modalImage.innerHTML="";
+  if(p.image){
+    const img=new Image();img.alt=p.title;img.src=p.image;img.style.cssText="width:100%;height:100%;object-fit:cover";
+    img.onerror=()=>{modalImage.innerHTML='<span class="mono" style="font-size:.65rem;color:var(--muted);letter-spacing:.12em">ADD PROJECT IMAGE</span>'};
+    modalImage.appendChild(img);
+  }else modalImage.innerHTML='<span class="mono" style="font-size:.65rem;color:var(--muted);letter-spacing:.12em">PROJECT IMAGE PLACEHOLDER</span>';
+  lastFocused=document.activeElement;modal.classList.add("open");document.body.style.overflow="hidden";$("#modalClose").focus();
+}
+function closeProject(){modal.classList.remove("open");document.body.style.overflow="";lastFocused?.focus()}
+$$(".project").forEach(card=>card.addEventListener("click",()=>openProject(+card.dataset.project)));
+$("#modalClose").addEventListener("click",closeProject);
+modal.addEventListener("click",e=>{if(e.target===modal)closeProject()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))closeProject()});
+
+
+function toast(msg){
+  const t=$("#toast");t.textContent=msg;t.classList.add("show");
+  clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove("show"),2600);
+}
+$("#copyEmail").addEventListener("click",async()=>{
+  try{await navigator.clipboard.writeText(portfolio.email);toast("Email copied.");}
+  catch{toast("Copy unavailable — select the email manually.");}
+});
+$("#contactForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=$("#senderName").value.trim(), email=$("#senderEmail").value.trim(), msg=$("#message").value.trim();
+  const subject=encodeURIComponent("Portfolio inquiry from "+name);
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+  location.href=`mailto:${portfolio.email}?subject=${subject}&body=${body}`;
+});
+
+
+const cursor=$("#cursor");
+if(matchMedia("(pointer:fine)").matches){
+  addEventListener("pointermove",e=>{cursor.style.left=e.clientX+"px";cursor.style.top=e.clientY+"px"},{passive:true});
+  $$("a,button,.project,.skill-card,.draft-card,.anim-card").forEach(el=>{
+    el.addEventListener("mouseenter",()=>cursor.classList.add("hover"));
+    el.addEventListener("mouseleave",()=>cursor.classList.remove("hover"));
+  });
+}
+
+
+if(matchMedia("(prefers-reduced-motion:reduce)").matches){
+  roleText.textContent=portfolio.roles[0];
+}
+</script>
+
+<!-- =========================================================
+     PUBLIC MESSAGE BOARD BACKEND — FIREBASE REALTIME DATABASE
+     Add your Firebase web app configuration below.
+========================================================= -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import {
+    getDatabase, ref, push, onValue
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAtV4-CyO2uCWxGXCwXQSZM42txogUu7oA",
+    authDomain: "myport-4a73d.firebaseapp.com",
+    databaseURL: "https://myport-4a73d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "myport-4a73d",
+    storageBucket: "myport-4a73d.firebasestorage.app",
+    messagingSenderId: "161241008269",
+    appId: "1:161241008269:web:c19ac1b9c35a9b1423bac4",
+    measurementId: "G-6R5E3SX1PD"
+  };
+
+  const form = document.getElementById("publicMessageForm");
+  const list = document.getElementById("publicMessageList");
+  const status = document.getElementById("messageStatus");
+  const connection = document.getElementById("messageConnection");
+
+  // Browser cache is only a visual fallback. Firebase is the permanent/shared source.
+  const CACHE_KEY = "rextabuan_public_messages_cache_v2";
+
+  function readCache() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(CACHE_KEY) || "[]");
+      return Array.isArray(saved) ? saved : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeCache(messages) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(messages.slice(0, 100)));
+    } catch {}
+  }
+
+  function renderMessages(messages) {
+    const clean = messages
+      .filter(m => m && typeof m === "object")
+      .map(m => ({
+        id: m.id || "",
+        name: String(m.name || "Anonymous").slice(0, 40),
+        message: String(m.message || "").slice(0, 500),
+        createdAt: Number(m.createdAt) || 0
+      }))
+      .sort((a, b) => b.createdAt - a.createdAt)
+      .slice(0, 100);
+
+    if (!clean.length) {
+      list.innerHTML =
+        '<div class="contact-item"><small>Messages</small><b>No messages yet. Be the first to leave one.</b></div>';
+      return;
+    }
+
+    list.innerHTML = clean.map(m => {
+      const date = m.createdAt
+        ? new Date(m.createdAt).toLocaleString()
+        : "";
+      return '<article class="contact-item">' +
+        '<small>' + escapeHTML(m.name) + ' · ' + escapeHTML(date) + '</small>' +
+        '<b style="white-space:pre-wrap;overflow-wrap:anywhere">' +
+        escapeHTML(m.message) +
+        '</b></article>';
+    }).join("");
+
+    writeCache(clean);
+  }
+
+  // Show cached messages immediately while Firebase connects.
+  const cachedMessages = readCache();
+  if (cachedMessages.length) {
+    renderMessages(cachedMessages);
+  }
+
+  try {
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const messagesRef = ref(db, "portfolioMessages");
+
+    // This is what makes messages come back after refresh.
+    onValue(messagesRef, snapshot => {
+      const messages = [];
+      snapshot.forEach(child => {
+        messages.push({
+          id: child.key,
+          ...(child.val() || {})
+        });
+      });
+
+      renderMessages(messages);
+      connection.textContent = "LIVE";
+      connection.style.color = "var(--good)";
+      status.textContent = "You Can Message here About in My Portfolio.";
+    }, error => {
+      console.error("Firebase READ ERROR:", error);
+      connection.textContent = "READ ERROR";
+      connection.style.color = "var(--muted)";
+
+      if (cachedMessages.length) {
+        status.textContent =
+          "Firebase cannot be read right now. Showing the last cached messages. Check your Realtime Database rules.";
+      } else {
+        status.textContent =
+          "Firebase cannot read messages. Check your Realtime Database rules.";
+      }
+    });
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+
+      const name = document.getElementById("publicName").value.trim();
+      const message = document.getElementById("publicMessage").value.trim();
+
+      if (!name || !message) return;
+
+      const button = form.querySelector("button[type=submit]");
+      button.disabled = true;
+      button.textContent = "POSTING...";
+
+      const newMessage = {
+        name: name.slice(0, 40),
+        message: message.slice(0, 500),
+        createdAt: Date.now()
+      };
+
+      try {
+        // IMPORTANT: push() writes permanently to Firebase.
+        // Do not replace this with only localStorage.
+        await push(messagesRef, newMessage);
+
+        form.reset();
+        status.textContent =
+          "Message posted successfully. It is saved in Firebase.";
+        toast("Message posted publicly.");
+      } catch (err) {
+        console.error("Firebase WRITE ERROR:", err);
+        status.textContent =
+          "Message could not be saved. Check your Firebase Realtime Database rules.";
+        toast("Unable to save message.");
+      } finally {
+        button.disabled = false;
+        button.textContent = "POST MESSAGE ↗";
+      }
+    });
+
+  } catch (err) {
+    console.error("Firebase INIT ERROR:", err);
+    connection.textContent = "ERROR";
+    connection.style.color = "var(--muted)";
+    status.textContent =
+      "Firebase could not be initialized. Check your Firebase configuration.";
+  }
+</script>
+</body>
+</html>
